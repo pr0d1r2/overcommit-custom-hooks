@@ -15,4 +15,3 @@ module Overcommit::Hook::PreCommit
     end
   end
 end
-
