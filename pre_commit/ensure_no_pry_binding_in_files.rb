@@ -3,7 +3,7 @@ module Overcommit::Hook::PreCommit
     def run
       errors = []
 
-      applicable_files.each do |file|
+      applicable_files.reject { |file| File.basename(file) =~ /^ensure_no_pry_binding_in_files\.rb$/ }.each do |file|
         if File.read(file) =~ /pry\.binding/
           errors << "#{file}: contains 'pry.binding'`"
         end
