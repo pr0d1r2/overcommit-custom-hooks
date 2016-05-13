@@ -4,9 +4,7 @@ module Overcommit::Hook::PreCommit
       errors = []
 
       applicable_files.reject { |file| File.basename(file) =~ /^Gemfile|ensure_no_byebug_in_files\.rb/ }.each do |file|
-        if File.read(file) =~ /byebug/
-          errors << "#{file}: contains 'byebug'`"
-        end
+        errors << "#{file}: contains 'byebug'`" if File.read(file) =~ /byebug/
       end
 
       return :fail, errors.join("\n") if errors.any?
