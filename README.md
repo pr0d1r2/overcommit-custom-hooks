@@ -30,7 +30,7 @@ PreCommit:
     include: '**/*_spec.rb'
   EnsureNoByebugInFiles:
     enabled: true
-  EnsureNoPryBindingInFiles:
+  EnsureNoBindingPryInFiles:
     enabled: true
 
 PostCheckout:
@@ -75,10 +75,10 @@ PreCommit:
     enabled: true
 ```
 
-### EnsureNoPryBindingInFiles
+### EnsureNoBindingPryInFiles
 
 ```yaml
 PreCommit:
-  EnsureNoPryBindingInFiles
+  EnsureNoBindingPryInFiles
     enabled: true
 ```
