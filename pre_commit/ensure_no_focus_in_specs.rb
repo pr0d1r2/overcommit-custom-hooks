@@ -1,11 +1,18 @@
 module Overcommit::Hook::PreCommit
   class EnsureNoFocusInSpecs < Base
+    FOCUS_STRINGS = [
+      ', :focus ',
+      ', focus: true ',
+      ', :focus => true ',
+      ', "focus" => true ',
+      ", 'focus' => true ",
+    ].freeze
+
     def run
       errors = []
-
       applicable_files.each do |file|
-        if File.read(file) =~ /, :focus /
-          errors << "#{file}: contains ', :focus '`"
+        if File.read(file) =~ /(#{FOCUS_STRINGS.join('|')})/
+          errors << "#{file}: contains '#{focus_string}'`"
         end
       end
 
