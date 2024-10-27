@@ -82,3 +82,51 @@ PreCommit:
   EnsureNoBindingPryInFiles
     enabled: true
 ```
+
+### Derailed
+
+Using https://github.com/zombocom/derailed_benchmarks
+
+#### DerailedBundleMem
+```yamp
+PreCommit:
+  DerailedBundleMem:
+    enabled: true
+```
+
+With `config/derailed/bundle_mem.yml`:
+
+```yaml
+---
+development: 95
+production: 85
+test: 95
+```
+
+#### DerailedBundleObjects
+```yamp
+PreCommit:
+  DerailedBundleObjects:
+    enabled: true
+```
+
+With `config/derailed/bundle_objects.yml`:
+
+```yaml
+---
+development:
+  allocated_bytes: 24000000
+  allocated_objects: 220000
+  retained_bytes: 4000000
+  retained_objects: 24000
+production:
+  allocated_bytes: 19000000
+  allocated_objects: 180000
+  retained_bytes: 2300000
+  retained_objects: 20000
+test:
+  allocated_bytes: 24000000
+  allocated_objects: 220000
+  retained_bytes: 4000000
+  retained_objects: 24000
+```
